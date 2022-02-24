@@ -1,4 +1,10 @@
-<?php include 'header.php' ?>
+<?php
+session_start();
+
+include_once ('header.php') ;
+include_once ('config.php') ;
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,36 +17,28 @@
 	
 	<div id="main">
 		<div id="products">
-			<div id="product-101" class="product">
-				<img src="images/football.png">
-				<h3 class="title"><a href="#">Product 101</a></h3>
-				<span>Price: $150.00</span>
-				<a class="add-to-cart" href="#">Add To Cart</a>
-			</div>
-			<div id="product-101" class="product">
-				<img src="images/tennis.png">
-				<h3 class="title"><a href="#">Product 102</a></h3>
-				<span>Price: $120.00</span>
-				<a class="add-to-cart" href="#">Add To Cart</a>
-			</div>
-			<div id="product-101" class="product">
-				<img src="images/basketball.png">
-				<h3 class="title"><a href="#">Product 103</a></h3>
-				<span>Price: $90.00</span>
-				<a class="add-to-cart" href="#">Add To Cart</a>
-			</div>
-			<div id="product-101" class="product">
-				<img src="images/table-tennis.png">
-				<h3 class="title"><a href="#">Product 104</a></h3>
-				<span>Price: $110.00</span>
-				<a class="add-to-cart" href="#">Add To Cart</a>
-			</div>
-			<div id="product-101" class="product">
-				<img src="images/soccer.png">
-				<h3 class="title"><a href="#">Product 105</a></h3>
-				<span>Price: $80.00</span>
-				<a class="add-to-cart" href="#">Add To Cart</a>
-			</div>
+
+		<?php
+				foreach ($product as $item)
+				{
+				  $html = "<form action='' method='POST'>
+								<div id=".$item["id"]." class='product'>
+									<img src='images/".$item["image"]."'>
+									<h3 class='title'>
+										<a href='#'>
+											Product - ".$item["id"]."
+										</a>
+									</h3>
+									<span>
+										Price: ".$item['price']."
+									</span>
+									<input type='submit' class='add-to-cart' name=".$item["id"]." value='Add To Cart'/>
+								</div>
+							</form>";
+					echo $html;
+				}
+			?>
+			
 		</div>
 	</div>
 	<div> 
